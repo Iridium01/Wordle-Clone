@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="651.0" prefWidth="641.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.wordle.WordleController">
+  <children>
+    <MenuBar prefWidth="641.0" VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="File">
+          <items>
+            <MenuItem mnemonicParsing="false" text="New" />
+            <MenuItem mnemonicParsing="false" text="Open…" />
+            <Menu mnemonicParsing="false" text="Open Recent" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Close" />
+            <MenuItem mnemonicParsing="false" text="Save" />
+            <MenuItem mnemonicParsing="false" text="Save As…" />
+            <MenuItem mnemonicParsing="false" text="Revert" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Preferences…" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Quit" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Edit">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Undo" />
+            <MenuItem mnemonicParsing="false" text="Redo" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Cut" />
+            <MenuItem mnemonicParsing="false" text="Copy" />
+            <MenuItem mnemonicParsing="false" text="Paste" />
+            <MenuItem mnemonicParsing="false" text="Delete" />
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="Select All" />
+            <MenuItem mnemonicParsing="false" text="Unselect All" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Help">
+          <items>
+            <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+    <AnchorPane fx:id="main_game" maxHeight="-1.0" maxWidth="-1.0" onKeyPressed="#KeyPress" prefHeight="464.0" prefWidth="653.0" style="-fx-background-color: #121212;" VBox.vgrow="ALWAYS">
+      <children>
+            <GridPane alignment="CENTER" layoutX="189.0" layoutY="65.0" prefHeight="300.0" prefWidth="263.0" AnchorPane.bottomAnchor="261.0" AnchorPane.leftAnchor="189.0" AnchorPane.rightAnchor="189.0" AnchorPane.topAnchor="65.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Label fx:id="guess_00" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" />
+                  <Label fx:id="guess_01" alignment="CENTER" layoutX="10.0" layoutY="11.0" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" />
+                  <Label fx:id="guess_02" alignment="CENTER" layoutX="62.0" layoutY="11.0" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" />
+                  <Label fx:id="guess_03" alignment="CENTER" layoutX="114.0" layoutY="11.0" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" />
+                  <Label fx:id="guess_04" alignment="CENTER" layoutX="167.0" layoutY="11.0" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" />
+                  <Label fx:id="guess_10" alignment="CENTER" layoutX="220.0" layoutY="11.0" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1" />
+                  <Label fx:id="guess_11" alignment="CENTER" layoutX="10.0" layoutY="11.0" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Label fx:id="guess_12" alignment="CENTER" layoutX="167.0" layoutY="11.0" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                  <Label fx:id="guess_13" alignment="CENTER" layoutX="114.0" layoutY="11.0" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <Label fx:id="guess_14" alignment="CENTER" layoutX="62.0" layoutY="11.0" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                  <Label fx:id="guess_20" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2" />
+                  <Label fx:id="guess_21" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label fx:id="guess_22" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                  <Label fx:id="guess_23" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                  <Label fx:id="guess_24" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                  <Label fx:id="guess_30" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3" />
+                  <Label fx:id="guess_31" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label fx:id="guess_32" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                  <Label fx:id="guess_33" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                  <Label fx:id="guess_34" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                  <Label fx:id="guess_40" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4" />
+                  <Label fx:id="guess_41" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Label fx:id="guess_42" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                  <Label fx:id="guess_43" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                  <Label fx:id="guess_44" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                  <Label fx:id="guess_50" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5" />
+                  <Label fx:id="guess_51" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Label fx:id="guess_52" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                  <Label fx:id="guess_53" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                  <Label fx:id="guess_54" alignment="CENTER" prefHeight="49.0" prefWidth="50.0" style="-fx-border-color: #818384; -fx-border-width: 2px; -fx-border-radius: 8px;" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="170.0" layoutY="388.0" prefHeight="42.0" prefWidth="302.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="KeyQ" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="Q" textFill="WHITE" />
+                  <Button fx:id="KeyW" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="W" textFill="WHITE" GridPane.columnIndex="1" />
+                  <Button fx:id="KeyE" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="E" textFill="WHITE" GridPane.columnIndex="2" />
+                  <Button fx:id="KeyR" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="R" textFill="WHITE" GridPane.columnIndex="3" />
+                  <Button fx:id="KeyT" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="T" textFill="WHITE" GridPane.columnIndex="4" />
+                  <Button fx:id="KeyY" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="Y" textFill="WHITE" GridPane.columnIndex="5" />
+                  <Button fx:id="KeyU" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="U" textFill="WHITE" GridPane.columnIndex="6" />
+                  <Button fx:id="KeyI" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="I" textFill="WHITE" GridPane.columnIndex="7" />
+                  <Button fx:id="KeyO" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="O" textFill="WHITE" GridPane.columnIndex="8" />
+                  <Button fx:id="KeyP" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="P" textFill="WHITE" GridPane.columnIndex="9" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="185.0" layoutY="438.0" prefHeight="42.0" prefWidth="272.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="KeyA" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="A" textFill="WHITE" />
+                  <Button fx:id="KeyS" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="S" textFill="WHITE" GridPane.columnIndex="1" />
+                  <Button fx:id="KeyD" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="D" textFill="WHITE" GridPane.columnIndex="2" />
+                  <Button fx:id="KeyF" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="F" textFill="WHITE" GridPane.columnIndex="3" />
+                  <Button fx:id="KeyG" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="G" textFill="WHITE" GridPane.columnIndex="4" />
+                  <Button fx:id="KeyH" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="H" textFill="WHITE" GridPane.columnIndex="5" />
+                  <Button fx:id="KeyJ" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="J" textFill="WHITE" GridPane.columnIndex="6" />
+                  <Button fx:id="KeyK" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="K" textFill="WHITE" GridPane.columnIndex="7" />
+                  <Button fx:id="KeyL" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="L" textFill="WHITE" GridPane.columnIndex="8" />
+               </children>
+            </GridPane>
+            <GridPane layoutX="181.0" layoutY="488.0" prefHeight="42.0" prefWidth="280.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="KeyEnter" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="⏎" textFill="WHITE" />
+                  <Button fx:id="KeyZ" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="Z" textFill="WHITE" GridPane.columnIndex="1" />
+                  <Button fx:id="KeyX" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="X" textFill="WHITE" GridPane.columnIndex="2" />
+                  <Button fx:id="KeyC" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="C" textFill="WHITE" GridPane.columnIndex="3" />
+                  <Button fx:id="KeyV" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="V" textFill="WHITE" GridPane.columnIndex="4" />
+                  <Button fx:id="KeyB" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="B" textFill="WHITE" GridPane.columnIndex="5" />
+                  <Button fx:id="KeyN" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="N" textFill="WHITE" GridPane.columnIndex="6" />
+                  <Button fx:id="KeyM" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="39.0" prefWidth="29.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="M" textFill="WHITE" GridPane.columnIndex="7" />
+                  <Button fx:id="KeyBackspace" mnemonicParsing="false" onAction="#ClickedLetter" prefHeight="42.0" prefWidth="32.0" style="-fx-background-radius: 8px; -fx-background-color: #818384;" text="⌫" textFill="WHITE" GridPane.columnIndex="8" />
+               </children>
+            </GridPane>
+            <Label layoutX="206.0" layoutY="25.0" text="Wordle (but not wordle)" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="ResetButton" layoutX="513.0" layoutY="65.0" mnemonicParsing="false" onAction="#ResetBoard" style="-fx-background-color: #818384;" text="Reset" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="LoadButton" layoutX="513.0" layoutY="115.0" mnemonicParsing="false" onAction="#LoadFile" style="-fx-background-color: #818384;" text="Load" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="SaveButton" layoutX="513.0" layoutY="165.0" mnemonicParsing="false" onAction="#SaveFile" style="-fx-background-color: #818384;" text="Save" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Pane fx:id="stats_screen" prefHeight="626.0" prefWidth="646.0" style="-fx-background-color: #121212;">
+               <children>
+                  <Label fx:id="win_lose_text" layoutX="254.0" layoutY="52.0" text="placeholder" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="25.0" />
+                     </font>
+                  </Label>
+                  <GridPane layoutX="152.0" layoutY="125.0" prefHeight="80.0" prefWidth="341.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="85.0" text="Played" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="85.0" text="Win %" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="85.0" text="Curr Streak" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="34.0" prefWidth="85.0" text="Max Streak" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="games_played_label" alignment="CENTER" prefHeight="55.0" prefWidth="89.0" text="gp" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="curr_streak_label" alignment="CENTER" prefHeight="55.0" prefWidth="89.0" text="gp" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="win_percent_label" alignment="CENTER" prefHeight="55.0" prefWidth="89.0" text="gp" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="max_streak_label" alignment="CENTER" prefHeight="55.0" prefWidth="89.0" text="gp" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="3">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </GridPane>
+                  <Button fx:id="close_stats" layoutX="296.0" layoutY="525.0" mnemonicParsing="false" onAction="#switch_screen" style="-fx-background-color: #818384;" text="Close" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <GridPane layoutX="187.0" layoutY="225.0" prefHeight="191.0" prefWidth="272.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="115.0" minWidth="10.0" prefWidth="44.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="228.0" minWidth="10.0" prefWidth="228.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="71.0" text="1" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="71.0" text="2" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="71.0" text="3" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="71.0" text="4" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="71.0" text="5" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="4">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="36.0" prefWidth="71.0" text="6" textAlignment="CENTER" textFill="WHITE" GridPane.rowIndex="5">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <ProgressBar fx:id="progress_1" prefHeight="17.0" prefWidth="232.0" progress="0.0" GridPane.columnIndex="1" />
+                        <ProgressBar fx:id="progress_2" prefHeight="17.0" prefWidth="232.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <ProgressBar fx:id="progress_3" prefHeight="17.0" prefWidth="232.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ProgressBar fx:id="progress_4" prefHeight="17.0" prefWidth="232.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ProgressBar fx:id="progress_5" prefHeight="17.0" prefWidth="232.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ProgressBar fx:id="progress_6" prefHeight="17.0" prefWidth="232.0" progress="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                     </children>
+                  </GridPane>
+               </children>
+            </Pane>
+      </children>
+    </AnchorPane>
+  </children>
+</VBox>
